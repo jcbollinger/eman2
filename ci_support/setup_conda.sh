@@ -4,7 +4,7 @@ set -xe
 
 # Download and install Miniconda
 export MINICONDA_URL="https://repo.continuum.io/miniconda"
-export MINICONDA_FILE="Miniconda2-latest-Linux-x86_64.sh"
+export MINICONDA_FILE="Miniconda2-4.6.14-Linux-x86_64.sh"
 
 curl -L -O "${MINICONDA_URL}/${MINICONDA_FILE}"
 bash $MINICONDA_FILE -b
@@ -13,9 +13,8 @@ bash $MINICONDA_FILE -b
 source ${HOME}/miniconda2/bin/activate root
 conda config --set show_channel_urls true
 
-conda install conda=4.6.14 conda-build=3.17.8 cmake=${CMAKE_VERSION} -c defaults --yes
-conda install eman-deps=15.0 cmake=${CMAKE_VERSION} conda=4.6.14 conda-build=3.17.8 -c cryoem/label/dev -c cryoem -c defaults -c conda-forge --yes
 
+conda install conda=4.6.14 conda-build=3.17.8 cmake=3.14 eman-deps=15.0 -c cryoem -c defaults -c conda-forge --yes
 conda config --set auto_update_conda False
 
 conda clean --all --yes
