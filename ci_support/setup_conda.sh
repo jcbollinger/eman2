@@ -13,9 +13,6 @@ bash $MINICONDA_FILE -b
 source ${HOME}/miniconda2/bin/activate root
 conda config --set show_channel_urls true
 
-
 conda install conda=4.6.14 conda-build=3.17.8 cmake=3.14 eman-deps=15.0 -c cryoem -c defaults -c conda-forge --yes
 conda config --set auto_update_conda False
-
 conda clean --all --yes
-rm $MINICONDA_FILE

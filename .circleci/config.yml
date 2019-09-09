@@ -4,9 +4,6 @@ jobs:
   setup_cache:
     docker:
       - image: circleci/buildpack-deps:16.04
-    environment:
-      CMAKE_VERSION: 3.14
-      BOOST_VERSION: 1.64
     steps:
       - run: sudo apt-get update && sudo apt-get install freeglut3-dev
       - checkout
