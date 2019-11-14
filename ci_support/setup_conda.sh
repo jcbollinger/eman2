@@ -15,5 +15,5 @@ conda config --set show_channel_urls true
 
 conda config --set auto_update_conda False
 
-conda install ${CIRCLE_JOB} eman-deps=19.0 conda=4.6.14 conda-build=3.17.8 cmake=3.14 -c cryoem -c defaults -c conda-forge --yes
+conda install ${CIRCLE_JOB} eman-deps=18.0 conda=4.6.14 conda-build=3.17.8 cmake=3.14 -c cryoem -c defaults -c conda-forge --yes
 conda clean --all --yes
