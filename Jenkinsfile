@@ -222,9 +222,9 @@ def getHomeDir() {
 }
 
 def run_conda_command() {
-    sh "conda create -n eman-deps-19.0-boost-${STAGE_NAME} eman-deps=19.0 boost=${STAGE_NAME} cmake=3.14 -c cryoem -c defaults -c conda-forge --yes"
-    sh "conda list -n eman-deps-19.0-boost-${STAGE_NAME}"
-    sh "conda list --explicit -n eman-deps-19.0-boost-${STAGE_NAME}"
+    sh "conda create -n eman-deps-18.0-boost-${STAGE_NAME} eman-deps=18.0 boost=${STAGE_NAME} cmake=3.14 -c cryoem -c defaults -c conda-forge --yes"
+    sh "conda list -n eman-deps-18.0-boost-${STAGE_NAME}"
+    sh "conda list --explicit -n eman-deps-18.0-boost-${STAGE_NAME}"
 }
 
 // For debugging purposes
