@@ -78,15 +78,3 @@ jobs:
           key: mini-eman-deps-18.0-{{ .Environment.CIRCLE_JOB }}-0
           paths:
             - ~/miniconda3
-
-
-workflows:
-  version: 2
-  setup_cache_boost:
-    jobs:
-      - boost=1.64
-      - boost=1.65
-      - boost=1.66
-      - boost=1.67
-      - boost=1.68
-      - boost=1.69
