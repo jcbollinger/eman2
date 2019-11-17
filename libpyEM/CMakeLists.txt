@@ -32,11 +32,3 @@ if(ENABLE_OPENGL)
 	target_link_libraries(pyGLUtils2       EMAN::OpenGL FTGL::FTGL)
 	target_link_libraries(pyMarchingCubes2 EMAN::OpenGL)
 endif()
-
-file(GLOB empythonlibs "${CMAKE_CURRENT_SOURCE_DIR}/*.py")
-install(FILES ${empythonlibs}
-		DESTINATION ${SP_DIR}
-		COMPONENT PythonFiles
-		)
-
-add_subdirectory(qtgui)
