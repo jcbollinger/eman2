@@ -2,10 +2,6 @@
 
 set -xe
 
-MYDIR="$(cd "$(dirname "$0")"; pwd -P)"
-
-bash "${MYDIR}/../tests/future_import_tests.sh"
-
 if [ ! -z ${TRAVIS} ];then
     source ci_support/setup_conda.sh
 
@@ -16,11 +12,6 @@ if [ ! -z ${CIRCLECI} ];then
     . $HOME/miniconda/etc/profile.d/conda.sh
     conda activate eman-deps-16.0
 fi
-
-python -m compileall -q .
-
-# Build and install eman2
-rm -vf ${CONDA_PREFIX}/bin/e2*.py
 
 conda info -a
 conda list
