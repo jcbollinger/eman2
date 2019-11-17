@@ -29,11 +29,8 @@ target_sources(pyEMData2 PRIVATE emdata_wrapitems.cpp)
 ADD_PYSTE_LIB(pyGeometry2)
 ADD_PYSTE_LIB(pyTransform2)
 ADD_PYSTE_LIB(pyPointArray2)
-ADD_PYSTE_LIB(pyUtils2)
 ADD_PYSTE_LIB(pyBoxingTools2)
 ADD_PYSTE_LIB(pyFundamentals2)
-ADD_PYSTE_LIB(pyTypeConverter2)
-target_sources(pyTypeConverter2 PRIVATE typeconverter.cpp)
 ADD_PYSTE_LIB(pyPolarData2)
 ADD_PYSTE_LIB(pyAnalyzer2)
 ADD_PYSTE_LIB(pyPDBReader2)
@@ -65,6 +62,3 @@ install(FILES ${empythonlibs}
 		)
 
 add_subdirectory(qtgui)
-
-target_link_libraries(pyUtils2         NumPy Boost::numpy)
-target_link_libraries(pyTypeConverter2 NumPy Boost::numpy)
