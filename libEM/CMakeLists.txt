@@ -1,5 +1,3 @@
-add_subdirectory(pmconfig)
-
 if(WIN32)
 	add_library(EM2 STATIC "")
 else()
@@ -79,7 +77,6 @@ target_sources(EM2 PRIVATE
 
 add_subdirectory(gorgon)
 add_subdirectory(sparx)
-add_subdirectory(sphire)
 
 if(WIN32)
 	target_compile_definitions(EM2 PUBLIC _CRT_SECURE_NO_WARNINGS _SCL_SECURE_NO_WARNINGS)
@@ -163,6 +160,4 @@ if(ENABLE_OPENGL)
 	mark_as_advanced(ENABLE_STATIC_FTGL)
 	
 	find_package(FTGL REQUIRED)
-	
-	add_subdirectory(fonts)
 endif()
