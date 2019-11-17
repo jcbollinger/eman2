@@ -32,4 +32,4 @@ cd $build_dir
 
 cmake --version
 cmake ${src_dir} -DENABLE_WARNINGS=OFF -DCMAKE_VERBOSE_MAKEFILE=ON
-make -j${CPU_COUNT} pyGLUtils2 pyMarchingCubes2
+make -j${CPU_COUNT} pyGLUtils2
