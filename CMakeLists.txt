@@ -233,37 +233,5 @@ IF(ENABLE_NATIVE_FFT)
 	ADD_DEFINITIONS(-DNATIVE_FFT)
 ENDIF()
 
-IF(ENABLE_SPARX_CUDA)
-	INCLUDE(${CMAKE_SOURCE_DIR}/libEM/cuda/FindCUDA.cmake)
-	CUDA_INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/libEM)
-	CUDA_INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/libEM/sparx/cuda)
-	ADD_DEFINITIONS(-DSPARX_USING_CUDA)
-	INCLUDE_DIRECTORIES(${CUDA_TOOLKIT_INCLUDE})
-	ADD_SUBDIRECTORY(libEM/sparx/cuda)
-ENDIF()
-
-IF(ENABLE_EMAN_CUDA)
-	INCLUDE(${CMAKE_SOURCE_DIR}/libEM/cuda/FindCUDA.cmake)
-	CUDA_INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/libEM)
-	ADD_DEFINITIONS(-DEMAN2_USING_CUDA)
-	INCLUDE_DIRECTORIES(${CUDA_TOOLKIT_INCLUDE})
-	ADD_SUBDIRECTORY(libEM/cuda)
-ENDIF()
-
 ADD_SUBDIRECTORY(libEM)
 ADD_SUBDIRECTORY(libpyEM)
-
-add_custom_target(PythonFiles
-				  COMMAND ${CMAKE_COMMAND} -DCOMPONENT=PythonFiles -P cmake_install.cmake
-				  )
-
-if(NOT WIN32)
-	install(CODE "execute_process(
-					COMMAND ${CMAKE_COMMAND} -E create_symlink ${EMAN_PREFIX}/bin/sp_gui.py ${EMAN_PREFIX}/bin/sphire
-					COMMAND ${CMAKE_COMMAND} -E create_symlink ${EMAN_PREFIX}/bin/sp_sx.py ${EMAN_PREFIX}/bin/sp_sparx
-					COMMAND ${CMAKE_COMMAND} -E create_symlink ${EMAN_PREFIX}/bin/sx.py    ${EMAN_PREFIX}/bin/sparx
-				 )"
-			)
-endif()
-
-include(cmake/testing.cmake)
