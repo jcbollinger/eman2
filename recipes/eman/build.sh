@@ -9,6 +9,6 @@ mkdir -p $build_dir
 cd $build_dir
 
 cmake --version
-cmake $SRC_DIR -DCMAKE_VERBOSE_MAKEFILE=ON -DCMAKE_TOOLCHAIN_FILE="${RECIPE_DIR}/cross-linux.cmake"
+cmake $SRC_DIR -DCMAKE_VERBOSE_MAKEFILE=ON
 
 make -j${CPU_COUNT} pyGLUtils2
