@@ -19,7 +19,5 @@ endfunction()
 
 include(${CMAKE_SOURCE_DIR}/cmake/OpenGL.cmake)
 
-find_package(FTGL REQUIRED)
-
 ADD_PYSTE_LIB(pyGLUtils2)
-target_link_libraries(pyGLUtils2       EMAN::OpenGL FTGL::FTGL)
+target_link_libraries(pyGLUtils2       EMAN::OpenGL)
