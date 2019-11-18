@@ -28,14 +28,5 @@
  *
  * */
 
-#ifdef USE_OPENGL
-
-#ifdef _WIN32
-	#include <windows.h>
-#endif
-
-// Boost Includes ==============================================================
 #include <boost/python.hpp>
-
-#endif //USE_OPENGL
 
