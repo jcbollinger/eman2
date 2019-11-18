@@ -11,7 +11,7 @@ function(ADD_PYSTE_LIB libname)
 			PROPERTIES
 			PREFIX lib
 			SUFFIX ${suffix}
-			LINK_LIBRARIES "EM2;Boost::python"
+			LINK_LIBRARIES "Boost::python"
 			)
 	
 	install(TARGETS ${libname} DESTINATION ${SP_DIR})
@@ -19,11 +19,5 @@ endfunction()
 
 if(ENABLE_OPENGL)
 	ADD_PYSTE_LIB(pyGLUtils2)
-	
-	target_sources(pyGLUtils2 PRIVATE
-				   ${CMAKE_SOURCE_DIR}/libEM/emftgl.cpp
-				   ${CMAKE_SOURCE_DIR}/libEM/glutil.cpp
-				   ${CMAKE_SOURCE_DIR}/libEM/marchingcubes.cpp
-				   )
 	target_link_libraries(pyGLUtils2       EMAN::OpenGL FTGL::FTGL)
 endif()
