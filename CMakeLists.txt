@@ -74,28 +74,7 @@ include(cmake/find_all.cmake)
 
 set(CMAKE_INSTALL_RPATH "${SP_DIR};${EMAN_PREFIX_LIB}")
 
-#flags used for debugging and testing
-OPTION(ENABLE_WARNINGS "display warnings during compilation" OFF)
-
-IF(CMAKE_SYSTEM_NAME MATCHES "Darwin")
-	OPTION(ENABLE_OPTIMIZE_OSX "enable OSX support" ON)
-ELSE()
-	OPTION(ENABLE_OPTIMIZE_OSX "enable OSX support" OFF)
-ENDIF()
-
-if(NOT WIN32)
-	set(WARNING_FLAGS_ON  "-W -Wall")
-	set(WARNING_FLAGS_OFF "-w")
-else()
-	set(WARNING_FLAGS_ON  "")    # Default for VS2008 is /W3, highest is /W4
-	set(WARNING_FLAGS_OFF "/W0")
-endif()
-
-if(ENABLE_WARNINGS)
-	add_definitions(${WARNING_FLAGS_ON})
-else()
-	add_definitions(${WARNING_FLAGS_OFF})
-endif()
+add_definitions("-w")
 
 IF(CMAKE_COMPILER_IS_GNUCXX)
 	SET(EMAN_CXX_FLAGS "" CACHE INTERNAL "EMAN CXX FLAGS")
