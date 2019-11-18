@@ -1,20 +1,12 @@
 function(ADD_PYSTE_LIB libname)
 	add_library(${libname} SHARED lib${libname}.cpp)
-	
-	if(WIN32)
-		set(suffix .pyd)
-	else()
-		set(suffix .so)
-	endif()
 
 	set_target_properties(${libname}
 			PROPERTIES
 			PREFIX lib
-			SUFFIX ${suffix}
+			SUFFIX .so
 			LINK_LIBRARIES "Boost::python"
 			)
-	
-	install(TARGETS ${libname} DESTINATION ${SP_DIR})
 endfunction()
 
 include(${CMAKE_SOURCE_DIR}/cmake/OpenGL.cmake)
