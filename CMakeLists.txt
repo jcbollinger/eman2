@@ -4,7 +4,7 @@ PROJECT(EMAN
 		LANGUAGES CXX
 		)
 
-include(cmake/functions.cmake)
+include(CMakePrintHelpers)
 
 # for 64-bit large file support
 ADD_DEFINITIONS(-D_LARGEFILE_SOURCE)
