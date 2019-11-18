@@ -21,9 +21,5 @@ if(OpenGL_FOUND AND NOT TARGET OpenGL AND NOT TARGET EMAN::OpenGL)
 	is_target_exist(OpenGL::OpenGL)
 	is_target_exist(OpenGL::GL)
 	is_target_exist(OpenGL::GLU)
-
-	set_target_properties(OpenGL PROPERTIES
-						  INTERFACE_COMPILE_DEFINITIONS USE_OPENGL
-						  )
 	target_link_libraries(OpenGL INTERFACE OpenGL::GL OpenGL::GLU)
 endif()
