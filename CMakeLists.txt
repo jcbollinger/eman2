@@ -39,7 +39,10 @@ set(CMAKE_INSTALL_PREFIX ${EMAN_PREFIX} CACHE PATH "installation prefix" FORCE)
 set(CMAKE_PREFIX_PATH    ${EMAN_PREFIX} ${EMAN_PREFIX}/..)
 cmake_print_variables(CMAKE_PREFIX_PATH)
 
-include(cmake/find_all.cmake)
+find_package(Python REQUIRED)
+
+# Find Boost
+include(${CMAKE_SOURCE_DIR}/cmake/Boost.cmake)
 
 set(CMAKE_INSTALL_RPATH "${SP_DIR};${EMAN_PREFIX_LIB}")
 
