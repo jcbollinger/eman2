@@ -2,10 +2,6 @@
 
 set -xe
 
-if [ ! -z ${TRAVIS} ];then
-    source ci_support/setup_conda.sh
-fi
-
 if [ ! -z ${CIRCLECI} ];then
     . $HOME/miniconda/etc/profile.d/conda.sh
     conda activate eman-deps-16.0

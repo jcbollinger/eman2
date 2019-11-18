@@ -2,12 +2,6 @@
 
 set -xe
 
-if [ ! -z ${TRAVIS} ];then
-    source ci_support/setup_conda.sh
-
-    conda install eman-deps=16.0 boost=1.66 -c cryoem -c defaults -c conda-forge --yes --quiet
-fi
-
 if [ ! -z ${CIRCLECI} ];then
     . $HOME/miniconda/etc/profile.d/conda.sh
     conda activate eman-deps-16.0
