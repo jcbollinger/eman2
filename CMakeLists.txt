@@ -75,31 +75,7 @@ include(cmake/find_all.cmake)
 set(CMAKE_INSTALL_RPATH "${SP_DIR};${EMAN_PREFIX_LIB}")
 
 #flags used for debugging and testing
-OPTION(ENABLE_MEMDEBUG "enable memory debug support of objects" OFF)
-OPTION(ENABLE_MEMDEBUG2 "enable memory debug support of EMData" OFF)
-OPTION(ENABLE_BOUNDS_CHECKING "enable bounds checking support" OFF)
-OPTION(ENABLE_RT "enable RT support" ON)
 OPTION(ENABLE_WARNINGS "display warnings during compilation" OFF)
-OPTION(ENABLE_IOCACHE "enable ImageIO caching" OFF)
-
-#flags for optimization level. You can only turn one of following option to ON, or leave all of them to OFF.
-OPTION(ENABLE_DEBUG "enable debug support" OFF)
-OPTION(ENABLE_PROFILE "enable symbol generation without debug support" OFF)
-OPTION(ENABLE_OPTIMIZE_X86_64 "GCC optimizations for generic X86_64" OFF)
-OPTION(ENABLE_OPTIMIZE_MACHINE "Optimize code for this specific computer (typ 5-10% speedup). Binaries may incompatible with some other computers." OFF)
-OPTION(ENABLE_OPTIMIZE_PHI "Optimize code for the Intel compiler on the PHI" OFF)
-OPTION(ENABLE_OPTIMIZE_WINDOWS_VC "Windows visual c++ specific optimization" OFF)
-
-set(optimization_options
-		ENABLE_DEBUG
-		ENABLE_PROFILE
-		ENABLE_OPTIMIZE_X86_64
-		ENABLE_OPTIMIZE_MACHINE
-		ENABLE_OPTIMIZE_PHI
-		ENABLE_OPTIMIZE_WINDOWS_VC
-	)
-
-check_if_options_on_greater_than("${optimization_options}" 1)
 
 IF(CMAKE_SYSTEM_NAME MATCHES "Darwin")
 	OPTION(ENABLE_OPTIMIZE_OSX "enable OSX support" ON)
@@ -121,61 +97,11 @@ else()
 	add_definitions(${WARNING_FLAGS_OFF})
 endif()
 
-IF(ENABLE_MEMDEBUG)
-	ADD_DEFINITIONS(-DMEMDEBUG)
-ENDIF()
-
-IF(ENABLE_MEMDEBUG2)
-	ADD_DEFINITIONS(-DMEMDEBUG2)
-ENDIF()
-
-IF(ENABLE_V4L2)
-	ADD_DEFINITIONS(-DBOUNDS_CHECKING -DENABLE_V4L2)
-ENDIF()
-
-IF(ENABLE_BOUNDS_CHECKING)
-	ADD_DEFINITIONS(-DBOUNDS_CHECKING)
-ENDIF()
-
-IF(ENABLE_DEBUG)
-	SET (OPT_FLAGS "-DDEBUG -O2 -g -ansi -fno-inline")
-ELSEIF(ENABLE_PROFILE)
-	SET (OPT_FLAGS "-O2 -ansi -march=native -m64 -ffast-math -pipe")
-	OPTION(ENABLE_DEBUG "enable debug support" OFF)
-ELSEIF(ENABLE_OPTIMIZE_OSX)
-#	SET (OPT_FLAGS "-O3 -ffast-math")
-	SET (OPT_FLAGS "-O3")
-#	SET (OPT_FLAGS "-Os -ffast-math")
-ELSEIF(ENABLE_OPTIMIZE_MACHINE)
-	SET (OPT_FLAGS "-O5 -ansi -march=native -m64 -ffast-math -pipe")
-ELSEIF(ENABLE_OPTIMIZE_X86_64)
-	SET (OPT_FLAGS "-O5 -ansi -march=k8 -mfpmath=sse -m64 -ffast-math -pipe")
-#	SET (OPT_FLAGS "-O5 -ansi -mfpmath=both -march=core-avx-i -m64 -ffast-math -pipe")
-ELSEIF(ENABLE_OPTIMIZE_WINDOWS_VC)
-	SET (OPT_FLAGS "/Ox /DHAVE_INLINE")
-ELSEIF(ENABLE_OPTIMIZE_PHI)
-	SET (OPT_FLAGS "-fast")
-#	SET (OPT_FLAGS "-O3 -xHost")
-ELSE()
-	IF(WIN32)
-		SET(OPT_FLAGS "")
-	ELSE()
-		SET (OPT_FLAGS "-O3 -ansi -ffast-math")     # This is the default
-	ENDIF()
-ENDIF()
-
 IF(CMAKE_COMPILER_IS_GNUCXX)
-#	SET(EMAN_CXX_FLAGS " " CACHE INTERNAL "EMAN CXX FLAGS")
-	IF(ENABLE_DEBUG)
-		SET(EMAN_CXX_FLAGS "-g -Wcast-qual -Wwrite-strings" CACHE INTERNAL "EMAN CXX FLAGS")
-		SET(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -g")
-		SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -g")
-	ELSE()
-		SET(EMAN_CXX_FLAGS "" CACHE INTERNAL "EMAN CXX FLAGS")
-	ENDIF()
+	SET(EMAN_CXX_FLAGS "" CACHE INTERNAL "EMAN CXX FLAGS")
 	SET(EMAN_CXX_FLAGS "${EMAN_CXX_FLAGS} -D_GLIBCXX_USE_CXX11_ABI=0" CACHE INTERNAL "EMAN CXX FLAGS")
 ENDIF()
 
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${EMAN_CXX_FLAGS} ${OPT_FLAGS}")
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${EMAN_CXX_FLAGS}")
 
 ADD_SUBDIRECTORY(libpyEM)
