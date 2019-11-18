@@ -74,20 +74,6 @@ include(cmake/find_all.cmake)
 
 set(CMAKE_INSTALL_RPATH "${SP_DIR};${EMAN_PREFIX_LIB}")
 
-OPTION(ENABLE_AUTODOC "enable latex/doxygen document generation and etc. " OFF)
-
-OPTION(ENABLE_FFTW3 "enable fftw 3 support (USE THIS)" ON)
-OPTION(ENABLE_FFTW_PLAN_CACHING "enable fftw caching" ON)
-OPTION(ENABLE_NATIVE_FFT "enable native fft support (for non-GPL use)" OFF)
-OPTION(ENABLE_ACML_FFT "enable AMD Core Math Library fft support" OFF)
-OPTION(ENABLE_FFT_CACHING "enable FFT Caching" OFF)
-MARK_AS_ADVANCED(ENABLE_ACML_FFT)
-
-OPTION(ENABLE_V4L2 "enable V4L2 framegrabbing support" OFF)
-
-OPTION(ENABLE_SPARX_CUDA "enable SPARX CUDA usage" OFF)
-OPTION(ENABLE_EMAN_CUDA "enable EMAN2 CUDA usage" OFF)
-
 #flags used for debugging and testing
 OPTION(ENABLE_MEMDEBUG "enable memory debug support of objects" OFF)
 OPTION(ENABLE_MEMDEBUG2 "enable memory debug support of EMData" OFF)
@@ -178,19 +164,6 @@ ELSE()
 	ENDIF()
 ENDIF()
 
-IF(CMAKE_SYSTEM MATCHES "IRIX.*")
-#	SET(EMAN_CXX_FLAGS "-n32 -LANG:std -w2 -fullwarn -LANG:ansi-for-init-scope=ON" CACHE INTERNAL "C++ compiler flags")
-	SET(EMAN_CXX_FLAGS "-n32 -woffall -LANG:std -LANG:ansi-for-init-scope=ON" CACHE INTERNAL "C++ compiler flags")
-ENDIF()
-
-IF(CMAKE_SYSTEM MATCHES "AIX*")
-	SET(EMAN_CXX_FLAGS "" CACHE INTERNAL "C++ compiler flags")
-ENDIF()
-
-IF(CMAKE_SYSTEM MATCHES "OSF1-V*")
-	SET(EMAN_CXX_FLAGS "-w0" CACHE INTERNAL "C++ compiler flags")
-ENDIF()
-
 IF(CMAKE_COMPILER_IS_GNUCXX)
 #	SET(EMAN_CXX_FLAGS " " CACHE INTERNAL "EMAN CXX FLAGS")
 	IF(ENABLE_DEBUG)
@@ -204,33 +177,5 @@ IF(CMAKE_COMPILER_IS_GNUCXX)
 ENDIF()
 
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${EMAN_CXX_FLAGS} ${OPT_FLAGS}")
-
-if(WIN32)
-	add_definitions(-DNOMINMAX)
-endif()
-
-IF(ENABLE_IOCACHE)
-	ADD_DEFINITIONS(-DIMAGEIO_CACHE)
-ENDIF()
-
-
-IF(ENABLE_FFTW_PLAN_CACHING)
-	ADD_DEFINITIONS(-DFFTW_PLAN_CACHING)
-ENDIF()
-
-IF(ENABLE_FFT_CACHING)
-	ADD_DEFINITIONS(-DFFT_CACHING)
-ENDIF()
-
-set(fft_options
-	ENABLE_FFTW3
-	ENABLE_NATIVE_FFT
-	ENABLE_ACML_FFT
-	)
-check_if_options_not_equal_to("${fft_options}" 1)
-
-IF(ENABLE_NATIVE_FFT)
-	ADD_DEFINITIONS(-DNATIVE_FFT)
-ENDIF()
 
 ADD_SUBDIRECTORY(libpyEM)
