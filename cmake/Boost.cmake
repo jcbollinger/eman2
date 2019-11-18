@@ -11,10 +11,3 @@ set_target_properties(Boost::python
 					  INTERFACE_COMPILE_DEFINITIONS BOOST_PYTHON_NO_PY_SIGNATURES
 					  INTERFACE_LINK_LIBRARIES Python::Python
 					  )
-if(WIN32)
-	ADD_DEFINITIONS(-DBOOST_DISABLE_ASSERTS)
-endif()
-
-IF(CMAKE_SYSTEM MATCHES "IRIX.*")
-    INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIR}/boost/compatibility/cpp_c_headers)
-ENDIF()
