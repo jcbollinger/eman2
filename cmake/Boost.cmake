@@ -1,3 +1,5 @@
+find_package(Python REQUIRED)
+
 set(Boost_USE_MULTITHREADED ON)
 set(Boost_NO_BOOST_CMAKE ON)
 find_package(Boost COMPONENTS python numpy REQUIRED)

@@ -23,8 +23,6 @@ set(CMAKE_INSTALL_PREFIX ${EMAN_PREFIX} CACHE PATH "installation prefix" FORCE)
 set(CMAKE_PREFIX_PATH    ${EMAN_PREFIX} ${EMAN_PREFIX}/..)
 cmake_print_variables(CMAKE_PREFIX_PATH)
 
-find_package(Python REQUIRED)
-
 # Find Boost
 include(${CMAKE_SOURCE_DIR}/cmake/Boost.cmake)
 
