@@ -31,6 +31,7 @@ execute_process(COMMAND ${PYTHON_EXECUTABLE} -c "import sysconfig; print(sysconf
 				OUTPUT_STRIP_TRAILING_WHITESPACE
 				)
 
+set(PYTHON_LIB_SHARED "0")
 cmake_print_variables(PYTHON_LIB_SHARED)
 cmake_print_variables(CMAKE_CXX_COMPILER_ID)
 
