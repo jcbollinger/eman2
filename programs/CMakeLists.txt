@@ -5,18 +5,6 @@ INSTALL(PROGRAMS ${e2programs}
 		COMPONENT PythonFiles
 )
 
-IF(WIN32)
-	INSTALL(FILES e2boxer.py
-		DESTINATION bin
-		RENAME	e2boxer.pyw
-		)
-		
-	INSTALL(FILES e2display.py
-		DESTINATION bin
-		RENAME	e2display.pyw
-		)
-ENDIF(WIN32)
-
 find_program(GIT_EXECUTABLE git)
 if(GIT_EXECUTABLE)
 	# Get git repository's directory
