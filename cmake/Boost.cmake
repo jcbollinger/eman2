@@ -16,11 +16,9 @@ set_target_properties(anaconda_compiler_include
 set_target_properties(Boost::python
 					  PROPERTIES
 					  INTERFACE_COMPILE_DEFINITIONS BOOST_PYTHON_NO_PY_SIGNATURES
+					  INTERFACE_COMPILE_DEFINITIONS $<$<BOOL:WIN32>:BOOST_DISABLE_ASSERTS>
 					  INTERFACE_LINK_LIBRARIES Python::Python
 					  )
-if(WIN32)
-	ADD_DEFINITIONS(-DBOOST_DISABLE_ASSERTS)
-endif()
 
 target_link_libraries(Boost::python INTERFACE anaconda_compiler_include)
 
