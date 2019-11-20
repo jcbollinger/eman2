@@ -12,6 +12,7 @@ fi
 
 if [ ! -z ${CIRCLECI} ];then
     source ${HOME}/miniconda2/bin/activate root
+    conda install conda-forge/label/cf201901::boost=1.69 -c conda-forge --yes --quiet
 fi
 
 python -m compileall -q .
