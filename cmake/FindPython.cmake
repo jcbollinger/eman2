@@ -50,6 +50,18 @@ find_package_handle_standard_args(Python
 # https://github.com/conda-forge/boost-feedstock/issues/70#issuecomment-486398688
 # https://github.com/conda-forge/conda-forge.github.io/issues/778
 
+add_library(dont_lookup_undefined_symbols INTERFACE)
+target_link_options(dont_lookup_undefined_symbols INTERFACE
+		#			If the compiler is Clang and if Py_ENABLE_SHARED is 0 (Python interpreter is linked statically against libpython),
+		#			use link options "-undefined dynamic_lookup -flat_namespace" to tell the linker not to look for undefined symbols.
+		#			They will be found at runtime.
+						$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>>:-undefined;dynamic_lookup;-flat_namespace>
+		#			If the compiler is GCC and if Py_ENABLE_SHARED is 0 (Python interpreter is linked statically against libpython),
+		#			use link options "-undefined" to tell the linker not to look for undefined symbols.
+		#			They will be found at runtime.
+						$<$<CXX_COMPILER_ID:GNU>:-undefined>
+					)
+
 if(Python_FOUND AND NOT TARGET Python::Python)
 	add_library(Python::Python INTERFACE IMPORTED)
 	set_target_properties(Python::Python
@@ -60,14 +72,7 @@ if(Python_FOUND AND NOT TARGET Python::Python)
 #			or if Py_ENABLE_SHARED is 1 (Python interpreter is not linked statically against libpython).
 			INTERFACE_LINK_LIBRARIES      $<$<OR:$<CXX_COMPILER_ID:MSVC>,$<BOOL:${PYTHON_LIB_SHARED}>>:${PYTHON_LIBRARIES}>
 			)
-	target_link_options(Python::Python INTERFACE
-						#			If the compiler is Clang and if Py_ENABLE_SHARED is 0 (Python interpreter is linked statically against libpython),
-						#			use link options "-undefined dynamic_lookup -flat_namespace" to tell the linker not to look for undefined symbols.
-						#			They will be found at runtime.
-						"$<$<AND:$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>>,$<NOT:$<BOOL:${PYTHON_LIB_SHARED}>>>:-undefined;dynamic_lookup;-flat_namespace>"
-						#			If the compiler is GCC and if Py_ENABLE_SHARED is 0 (Python interpreter is linked statically against libpython),
-						#			use link options "-undefined" to tell the linker not to look for undefined symbols.
-						#			They will be found at runtime.
-						"$<$<AND:$<CXX_COMPILER_ID:GNU>,$<NOT:$<BOOL:${PYTHON_LIB_SHARED}>>>:-undefined>"
+	target_link_libraries(Python::Python INTERFACE
+								$<$<NOT:$<BOOL:${PYTHON_LIB_SHARED}>>:dont_lookup_undefined_symbols>
 						)
 endif()
