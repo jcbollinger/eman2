@@ -1,3 +1,61 @@
+py enable shared
+opengl include
+D_GLIBCXX_USE_CXX11_ABI
+warning off on
+
+include_directories
+  INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIR}/boost/compatibility/cpp_c_headers)
+
+
+add_definitions:
+   WARNING_FLAGS_ON
+   WARNING_FLAGS_OFF
+   DMEMDEBUG
+   DMEMDEBUG2
+   -DBOUNDS_CHECKING -DENABLE_V4L2
+   ENABLE_BOUNDS_CHECKING
+   DNOMINMAX
+   DIMAGEIO_CACHE
+   DFFTW_PLAN_CACHING
+   DFFT_CACHING
+   DNATIVE_FFT
+   ADD_DEFINITIONS(-D${VARIABLE})
+	DBOOST_DISABLE_ASSERTS
+
+
+_FLAGS:
+	CMakeLists.txt top level
+
+
+
+
+
+IRIX
+AIX
+OSF1-V
+
+ENABLE_V4L2
+
+
+
+# for 64-bit large file support
+ADD_DEFINITIONS(-D_LARGEFILE_SOURCE)
+ADD_DEFINITIONS(-D_FILE_OFFSET_BITS=64)
+ADD_DEFINITIONS(-D_LARGE_FILES)
+
+INCLUDE(${CMAKE_ROOT}/Modules/CheckIncludeFiles.cmake)
+INCLUDE(${CMAKE_ROOT}/Modules/CheckFunctionExists.cmake)
+INCLUDE(${CMAKE_ROOT}/Modules/CheckTypeSize.cmake)
+
+EMAN_CHECK_FUNCTION(fseek64 HAVE_FSEEK64)
+EMAN_CHECK_FUNCTION(fseeko HAVE_FSEEKO)
+EMAN_CHECK_FUNCTION(ftell64 HAVE_FTELL64)
+EMAN_CHECK_FUNCTION(ftello HAVE_FTELLO)
+# end for 64-bit large file support
+
+
+
+
 High priority
 5/30/17		PIF writer seems broken (Reggie McNulty)
 2/29/16		jenni@harvard noticed no automasking in e2refinemulti! option ignored. no other masking done
