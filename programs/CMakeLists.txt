@@ -5,6 +5,8 @@ INSTALL(PROGRAMS ${e2programs}
 		COMPONENT PythonFiles
 )
 
+# TODO: Add doc, extract into own file maybe
+# Find git, compute hash, test if a git repo, assign EMAN_GITHASH
 find_program(GIT_EXECUTABLE git)
 if(GIT_EXECUTABLE)
 	# Get git repository's directory
