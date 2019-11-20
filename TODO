@@ -1,5 +1,4 @@
-py enable shared
-opengl include
+boost include
 D_GLIBCXX_USE_CXX11_ABI
 warning off on
 
