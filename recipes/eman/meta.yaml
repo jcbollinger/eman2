@@ -34,19 +34,3 @@ requirements:
         - {{ req }}
         {% endfor %}
         - libglu      # [linux]
-    
-test:
-  requires:
-    - openmpi              # [not win]
-    - eman-deps=16.0
-    - boost 1.66.*
-  
-  source_files:
-    - examples/mpi_test.py
-    - programs/
-    - tests/
-    - rt/pyem/
-
-  commands:
-    - bash tests/run_tests.sh                                # [not win]
-    - call tests\run_tests.bat                               # [win]

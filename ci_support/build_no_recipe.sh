@@ -42,8 +42,3 @@ cd $build_dir
 cmake --version
 cmake ${src_dir} -DENABLE_WARNINGS=OFF -DCMAKE_VERBOSE_MAKEFILE=ON
 make -j${CPU_COUNT}
-make install
-
-# Run tests
-cd "${src_dir}"
-bash tests/run_tests.sh
