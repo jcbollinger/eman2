@@ -9,5 +9,4 @@ set_target_properties(Boost::python
 					  PROPERTIES
 					  INTERFACE_COMPILE_DEFINITIONS BOOST_PYTHON_NO_PY_SIGNATURES
 					  INTERFACE_LINK_LIBRARIES Python::Python
-					  INTERFACE_INCLUDE_DIRECTORIES $ENV{BUILD_PREFIX}/x86_64-conda_cos6-linux-gnu/include/c++/7.3.0/
 					  )
