@@ -1,9 +1,9 @@
 package:
-    name: hello
-    version: 1
+    name: eman2
+    version: 2.31
 
 source:
-    path: {{ RECIPE_DIR }}/../
+    path: {{ RECIPE_DIR }}/../..
 
 requirements:
     build:
