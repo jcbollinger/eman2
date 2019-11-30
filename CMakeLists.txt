@@ -22,7 +22,7 @@ include(${CMAKE_SOURCE_DIR}/cmake/Boost.cmake)
 add_definitions("-w")
 
 function(ADD_PYSTE_LIB libname)
-	add_library(${libname} SHARED lib${libname}.cpp)
+	add_library(${libname} SHARED hello-boost.cpp)
 
 	set_target_properties(${libname}
 			PROPERTIES
