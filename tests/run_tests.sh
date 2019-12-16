@@ -26,7 +26,7 @@ nosetests -vv --exe -m "^test_*" \
                     -e "test_result" \
                     -e "test_boxing" \
                     -a \!broken \
-                    rt/pyem/
+                    $PREFIX/tests/rt/pyem/
 
 # 5. Test openmpi
 if [ $(whoami) != "root" ];then
