@@ -30,6 +30,7 @@ nosetests -vv --exe -m "^test_*" \
 
 # 5. Test openmpi
 if [ $(whoami) != "root" ];then
+    export TMPDIR=/tmp
     mpirun -n 4 $(which python) ${MYDIR}/../examples/mpi_test.py
 fi
 
