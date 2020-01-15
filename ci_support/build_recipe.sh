@@ -26,7 +26,7 @@ fi
 conda info -a
 conda list
 conda list --explicit
-conda render recipes/eman
+conda render recipes/eman -m $1
 conda build purge-all
 
-conda build recipes/eman -c cryoem -c defaults -c conda-forge
+conda build recipes/eman -c cryoem -c defaults -c conda-forge -m $1

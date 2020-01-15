@@ -15,9 +15,41 @@ jobs:
       - checkout
       - run: bash ci_support/build_recipe.sh
 
+  openmpi-2.0.2:
+    docker:
+      - image: cryoem/eman-deps:16-boost166-circleci18
+    steps:
+      - checkout
+      - run: bash ci_support/build_recipe.sh .circleci/${CIRCLE_JOB}.yaml
+
+  openmpi-2.1.1:
+    docker:
+      - image: cryoem/eman-deps:16-boost166-circleci18
+    steps:
+      - checkout
+      - run: bash ci_support/build_recipe.sh .circleci/${CIRCLE_JOB}.yaml
+
+  openmpi-2.1.2:
+    docker:
+      - image: cryoem/eman-deps:16-boost166-circleci18
+    steps:
+      - checkout
+      - run: bash ci_support/build_recipe.sh .circleci/${CIRCLE_JOB}.yaml
+
+  openmpi-3:
+    docker:
+      - image: cryoem/eman-deps:16-boost166-circleci18
+    steps:
+      - checkout
+      - run: bash ci_support/build_recipe.sh .circleci/${CIRCLE_JOB}.yaml
+
 workflows:
   version: 2
   build_recipe_and_no_recipe:
     jobs:
       - build_no_recipe
-      - build_recipe
+#      - build_recipe
+      - openmpi-2.0.2
+      - openmpi-2.1.1
+      - openmpi-2.1.2
+      - openmpi-3
