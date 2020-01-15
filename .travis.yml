@@ -8,8 +8,9 @@ env:
     - CONDA_PY=37
     - MINICONDA_FILE="Miniconda3-4.6.14-MacOSX-x86_64.sh"
   matrix:
-    - build_scrt="build_recipe.sh"
-    - build_scrt="build_no_recipe.sh"
+    - build_scrt="build_no_recipe.sh" variant_file=""
+    - build_scrt="build_recipe.sh"    variant_file=".circleci/numpy-1.16.yaml"
+    - build_scrt="build_recipe.sh"    variant_file=".circleci/numpy-1.17.yaml"
 
 
 before_install:
@@ -24,4 +25,4 @@ before_install:
 
 
 script:
-  - bash ci_support/${build_scrt}
+  - bash ci_support/${build_scrt} ${variant_file}
