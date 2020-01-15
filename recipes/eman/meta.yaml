@@ -13,7 +13,6 @@ requirements:
 
     host:
         - msinttypes  # [win]
-        - python 2.7.14
         - boost 1.66.*
         - pydusa 1.15   openmpi{{ openmpi }}_12  # [not win]
         - fftw   3.3.8  nompi_*                  # [win]
