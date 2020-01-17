@@ -15,7 +15,8 @@ requirements:
         - msinttypes  # [win]
         - python 2.7.14
         - boost 1.66.*
-        - fftw-mpi
+        - pydusa 1.15   openmpi{{ openmpi }}_12  # [not win]
+        - fftw   3.3.8  nompi_*                  # [win]
         - numpy 1.13.*
         - ftgl
         - freetype 2.8.*  # [osx]
@@ -31,8 +32,8 @@ requirements:
     
 test:
   requires:
-    - openmpi              # [not win]
-    - eman-deps=16.0
+    - eman-deps=16.0.*   openmpi{{ openmpi }}_1   # [not win]
+    - eman-deps=16.0.*   1                        # [win]
     - boost 1.66.*
   
   source_files:
