@@ -49,7 +49,4 @@ workflows:
     jobs:
 #      - build_no_recipe
 #      - build_recipe
-      - openmpi-2.0.2
-      - openmpi-2.1.1
-      - openmpi-2.1.2
-#      - openmpi-3
+      - openmpi-3

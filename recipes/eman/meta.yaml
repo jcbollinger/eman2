@@ -12,15 +12,15 @@ requirements:
         - {{ cdt('mesa-libgl-devel') }}      # [linux]
 
     host:
-        - eman-deps=16.0.*   openmpi{{ openmpi }}_1   # [not win]
-        - eman-deps=16.0.*   1                        # [win]
+        - eman-deps=16.0.*   openmpi{{ openmpi }}_2   # [not win]
+        - eman-deps=16.0.*   2                        # [win]
         - boost 1.66.*
         - libglu      # [linux]
     
 test:
   requires:
-    - eman-deps=16.0.*   openmpi{{ openmpi }}_1   # [not win]
-    - eman-deps=16.0.*   1                        # [win]
+    - eman-deps=16.0.*   openmpi{{ openmpi }}_2   # [not win]
+    - eman-deps=16.0.*   2                        # [win]
     - boost 1.66.*
   
   source_files:
