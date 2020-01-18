@@ -8,11 +8,11 @@ env:
     - CONDA_PY=27
     - MINICONDA_FILE="Miniconda2-4.6.14-MacOSX-x86_64.sh"
   matrix:
-    - build_scrt="build_no_recipe.sh" variant_file=""
+#    - build_scrt="build_no_recipe.sh" variant_file=""
     - build_scrt="build_recipe.sh"    variant_file=".circleci/openmpi-2.0.2.yaml"
     - build_scrt="build_recipe.sh"    variant_file=".circleci/openmpi-2.1.1.yaml"
     - build_scrt="build_recipe.sh"    variant_file=".circleci/openmpi-2.1.2.yaml"
-    - build_scrt="build_recipe.sh"    variant_file=".circleci/openmpi-3.yaml"
+#    - build_scrt="build_recipe.sh"    variant_file=".circleci/openmpi-3.yaml"
 
 
 before_install:
