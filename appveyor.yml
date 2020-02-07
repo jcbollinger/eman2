@@ -2,12 +2,8 @@ image: Visual Studio 2017
 
 environment:
   TARGET_ARCH: x64
-  CONDA_PY: 37
-  CONDA_INSTALL_LOCN: C:\\Miniconda37-x64
-
-  matrix:
-    - NUMPY_VER: 1.16
-    - NUMPY_VER: 1.17
+  CONDA_PY: 36
+  CONDA_INSTALL_LOCN: C:\\Miniconda36-x64
 
 platform:
     - x64
@@ -24,15 +20,15 @@ install:
 
     - conda.exe config --set show_channel_urls true
 
-    - conda.exe install conda-build --yes --quiet
+    - conda.exe install conda=4.6.14 conda-build=3.17.8 --yes --quiet
 
     - conda.exe info -a
     - conda.exe config --get
-    - conda.exe render %APPVEYOR_BUILD_FOLDER%\recipes\eman -m .circleci/numpy-%NUMPY_VER%.yaml
+    - conda.exe render %APPVEYOR_BUILD_FOLDER%\recipes\eman
 
 
 # Skip .NET project specific build phase.
 build: off
 
 test_script:
-    - conda.exe build %APPVEYOR_BUILD_FOLDER%\recipes\eman -m .circleci/numpy-%NUMPY_VER%.yaml -c cryoem -c defaults -c conda-forge --no-test
+    - conda.exe build %APPVEYOR_BUILD_FOLDER%\recipes\eman -c cryoem -c defaults -c conda-forge --no-test

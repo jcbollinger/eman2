@@ -23,25 +23,9 @@ jobs:
       - checkout
       - run: bash ci_support/build_recipe.sh
 
-  numpy-1.16:
-    docker:
-      - image: cryoem/eman-deps:18-boost166-circleci18
-    steps:
-      - checkout
-      - run: bash ci_support/build_recipe.sh .circleci/${CIRCLE_JOB}.yaml
-
-  numpy-1.17:
-    docker:
-      - image: cryoem/eman-deps:18-boost166-circleci18
-    steps:
-      - checkout
-      - run: bash ci_support/build_recipe.sh .circleci/${CIRCLE_JOB}.yaml
-
 workflows:
   version: 2
   build_recipe_and_no_recipe:
     jobs:
       - build_no_recipe
-#      - build_recipe
-      - numpy-1.16
-      - numpy-1.17
+      - build_recipe
