@@ -17,13 +17,15 @@ requirements:
 
     host:
         - boost     1.70.*
-        - eman-deps-cxx     19.0 *{{numpy}}*
+        - numpy     1.17.*
+        - eman-deps-cxx     19.0
         - libglu                          # [linux]
     
 test:
   requires:
-    - eman-deps     19.0 *{{numpy}}*
+    - eman-deps     19.0
     - boost         1.70.*
+    - numpy         1.17.*
   
   source_files:
     - examples/mpi_test.py
