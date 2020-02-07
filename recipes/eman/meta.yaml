@@ -16,14 +16,14 @@ requirements:
         - {{ cdt('mesa-libgl-devel') }}   # [linux]
 
     host:
-        - boost     1.69.*
+        - boost     1.70.*
         - eman-deps-cxx     19.0 *{{numpy}}*
         - libglu                          # [linux]
     
 test:
   requires:
     - eman-deps     19.0 *{{numpy}}*
-    - boost         1.69.*
+    - boost         1.70.*
   
   source_files:
     - examples/mpi_test.py
