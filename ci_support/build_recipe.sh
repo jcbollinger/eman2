@@ -33,4 +33,4 @@ else
     CONDA_BUILD_TEST=""
 fi
 
-conda build recipes/eman -c cryoem -c defaults -c conda-forge ${CONDA_BUILD_TEST}
+conda build recipes/eman -c cryoem -c defaults -c conda-forge -c conda-forge/label/cf201901 ${CONDA_BUILD_TEST}

@@ -17,6 +17,7 @@ requirements:
 
     host:
         - conda-forge/label/cf201901::boost         1.69.*
+        - conda-forge/label/cf201901::boost-cpp     1.69.*
         - numpy     1.17.*
         - eman-deps-cxx     19.0
         - libglu                          # [linux]
@@ -25,6 +26,7 @@ test:
   requires:
     - eman-deps     19.0
     - conda-forge/label/cf201901::boost         1.69.*
+    - conda-forge/label/cf201901::boost-cpp     1.69.*
     - numpy         1.17.*
   
   source_files:
