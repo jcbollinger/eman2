@@ -14,9 +14,7 @@ python -m compileall -q .
 
 source "${MYDIR}/jenkinsci.sh"
 
-conda info -a
-conda list
-conda list --explicit
+bash "${MYDIR}/conda.sh"
 conda render recipes/eman
 conda build purge-all
 

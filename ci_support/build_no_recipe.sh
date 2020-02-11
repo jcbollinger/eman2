@@ -18,9 +18,7 @@ python -m compileall -q .
 # Build and install eman2
 rm -vf ${CONDA_PREFIX}/bin/e2*.py
 
-conda info -a
-conda list
-conda list --explicit
+bash "${MYDIR}/conda.sh"
 
 source "${MYDIR}/jenkinsci.sh"
 
