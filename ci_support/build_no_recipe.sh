@@ -22,11 +22,7 @@ conda info -a
 conda list
 conda list --explicit
 
-if [ -n "$JENKINS_HOME" ];then
-    CPU_COUNT=4
-else
-    CPU_COUNT=2
-fi
+source "${MYDIR}/jenkinsci.sh"
 
 build_dir="../build_eman"
 src_dir=${PWD}

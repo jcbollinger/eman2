@@ -12,11 +12,7 @@ source "${MYDIR}/circleci.sh"
 
 python -m compileall -q .
 
-if [ -n "$JENKINS_HOME" ];then
-    export CPU_COUNT=4
-else
-    export CPU_COUNT=2
-fi
+source "${MYDIR}/jenkinsci.sh"
 
 conda info -a
 conda list
