@@ -9,12 +9,11 @@ if [ -n "${TRAVIS}" ];then
 fi
 
 source "${MYDIR}/circleci.sh"
+source "${MYDIR}/jenkinsci.sh"
+bash "${MYDIR}/conda.sh"
 
 python -m compileall -q .
 
-source "${MYDIR}/jenkinsci.sh"
-
-bash "${MYDIR}/conda.sh"
 conda render recipes/eman
 conda build purge-all
 

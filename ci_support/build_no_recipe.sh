@@ -12,15 +12,13 @@ if [ -n "${TRAVIS}" ];then
 fi
 
 source "${MYDIR}/circleci.sh"
+source "${MYDIR}/jenkinsci.sh"
+bash "${MYDIR}/conda.sh"
 
 python -m compileall -q .
 
 # Build and install eman2
 rm -vf ${CONDA_PREFIX}/bin/e2*.py
-
-bash "${MYDIR}/conda.sh"
-
-source "${MYDIR}/jenkinsci.sh"
 
 build_dir="../build_eman"
 src_dir=${PWD}
