@@ -262,6 +262,7 @@ pipeline {
 
     CI_BUILD       = sh(script: "! git log -1 | grep '.*\\[ci build\\].*'",       returnStatus: true)
     EMAN_DEPS_VERSION = "22.0"
+    CMAKE_VERSION     = "3.14"
   }
   
   stages {
